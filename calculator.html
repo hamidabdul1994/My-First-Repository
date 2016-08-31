@@ -1,0 +1,84 @@
+<html>
+<head>
+<title>My calculator</title>
+<script type="text/javascript">
+function checkNum(num,myThis)
+{
+if(isNaN(num))
+{
+	myThis.value="";
+	//return false;
+}
+	var i;
+	for(i=0;i<num.length;i++)
+	{
+		if(num.charCodeAt(i)>=48 ||num.charCodeAt(i)<=57)
+		{
+			
+		}else
+		{
+			return false;
+		}
+	}
+}
+
+function calFunction()
+{
+
+	var no1=parseInt(document.getElementById("no1").value);
+	var no2=parseInt(document.getElementById("no2").value);
+	var op=document.getElementById("op").value;
+	var result="?";
+
+	switch(op)
+	{
+		case '1':
+			result=no1+no2;
+		break;
+
+		case '2':
+			result=no1-no2;
+		break;
+
+		case '3':
+			result=no1*no2;
+		break;
+
+		case '4':
+			result=no1/no2;
+		break;
+
+		default:
+			alert("please Select the drop box");
+		break;
+	}
+	if(isNaN(result))
+	{
+		alert("Please enter the number only");
+		result="?";
+	}
+
+	document.getElementById("result").innerHTML=result;
+}
+</script>
+</head>
+<body>
+<center>
+<div style="width:350px">
+<div style="float:left">
+Enter First Number :<input type="text" id="no1" onkeydown="return checkNum(this.value,this)"/></div>
+<div style="float:left">Enter Second Number:<input type="text" id="no2" /><br/></div>
+<div style="float:left">Operation:
+<select id="op">
+<option value="" >Select operation</option>
+<option value="1" >Addition</option>
+<option value="2" >Subtraction</option>
+<option value="3" >Multiplication</option>
+<option value="4" >Division</option>
+</select><br/></div>
+<div>Result:<span id="result" >?</span><br/><br/></div>
+<div><button onclick="calFunction()">calculate</button></div>
+</div>
+</center>
+</body>
+</html>
