@@ -1,0 +1,27 @@
+<html>
+<head>
+<script type="text/javascript" >
+function myFunction()
+{
+document.getElementById("demo").innerHTML="Checking the Java script..."+window.value;
+}
+function myFunctionShow()
+{
+
+window.value="Hello";
+
+document.getElementById("demo").style.display="block";
+}
+function myFunctionHide()
+{
+document.getElementById("demo").style.display="none";
+}
+</script>
+</head>
+<body>
+<p id="demo" >My Paragraph show some text for test......</p>
+<button type="button" onclick="myFunction()" >Try me</button>
+<button type="button" onclick="myFunctionShow()" >Show me</button>
+<button type="button" onclick="myFunctionHide()" >Hide me</button>
+</body>
+</html>
