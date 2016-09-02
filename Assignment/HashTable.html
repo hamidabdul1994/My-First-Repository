@@ -1,0 +1,20 @@
+<html>
+	<body>
+		<script src="hashtable.js"></script>
+		<script>
+			var h = new HashTable( {one: 1, two: 2, three: 3, "i'm no 4": 4} );
+
+			document.write('original length: ' + h.length);
+			document.write('<br>value of key "one": ' + h.getItem('one'));
+			document.write('<br>has key "foo"? ' + h.hasItem('foo'));
+			document.write('<br>previous value of key "foo": ' + h.setItem('foo', 'bar'));
+			document.write('<br>length after setItem: ' + h.length);
+			document.write('<br>value of key "foo": ' + h.getItem('foo'));
+			document.write('<br>value of key "i m no 4": ' + h.getItem("i'm no 4"));
+			document.write("<br>Key's are :"+h.keys());
+			document.write("<br>Values are :"+h.values());
+			h.clear();
+			document.write('<br>length after clear: ' + h.length);
+		</script>
+	</body>
+</html>
