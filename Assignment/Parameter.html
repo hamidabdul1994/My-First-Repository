@@ -1,0 +1,37 @@
+<html>
+	<head>
+		<title>My Page</title>
+		<script>
+			function MyFunction()
+			{
+				var arr,i,j;
+				arr=[];
+				i = document.getElementById('parameter').value;
+
+				for(j=0;j<i;j++)
+				{
+					arr[j]=prompt("Enter the "+(j+1)+" Parameter");
+				}
+				DisplayMethod("Bridge Labz",arr);
+			}
+			function DisplayMethod()
+			{
+				var i,txt;
+				txt =" ";
+				for(i=0;i<arguments.length;i++)
+				{
+				txt=txt+" "+arguments[i];
+				}
+
+				document.getElementById("display").innerHTML=txt;			
+			}
+
+		</script>
+	</head>
+
+	<body>
+		Output Will here :<p id="display" >?</p><br>
+		Enter Number(How many Parameter you want ot pass:)<input type="number" id="parameter" /><br>
+		<button onclick="MyFunction()">Submit</button>
+	</body>
+</html>
