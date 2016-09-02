@@ -1,0 +1,68 @@
+<!--
+@Author : Hamid Raza Noori
+@Date   : 2nd Sep 2016
+@Purpose: To call method in chaining eg new calculate().first().second().sum();
+-->
+
+<html>
+	<body>
+	<script>
+		function calculate() {
+			var num1;
+			var num2;
+
+			debugger;
+
+			this.first = function(num1) {
+			//document.write(num1);
+			this.num1 = num1;
+			return this; 	//if you dont write return this ,it will give the error
+		    	}
+
+			this.second = function(num2) {
+			//document.write(num2);
+			this.num2 = num2;
+			return this; 	//if you dont write return this ,it will give the error
+			}
+
+	
+	
+			this.sum = function() {
+		//	add = num1 + num2;
+			return this.num1 + this.num2;
+		    	}
+
+		}
+
+		document.write("Sum is::"+new calculate().first(5).second(4).sum()); // 10
+
+		/*function calculate() {
+			var num1 = 0;
+			var num2 = 0; 
+
+			debugger;
+			};
+
+			calculate.prototype.first = function(num1) {
+			this.num1 = Number(num1);
+			return this; 	//if you dont write it will give the error
+		    	};
+
+			calculate.prototype.second = function(num2) {
+			this.num2 = num2;
+			return this;
+			};
+
+	
+	
+			calculate.prototype.sum = function() {
+		//	add = num1 + num2;
+			return this.num1 + this.num2;
+		    	};
+
+		document.write("Sum is::" + new calculate().first(5).second(4).sum()); // 10
+		*/
+	</script>
+
+	</body>
+</html>

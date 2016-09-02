@@ -1,0 +1,21 @@
+<!--
+@Author : Hamid Raza Noori
+@Date   : 2nd Sep 2016
+@Purpose: To use Currying method
+-->
+
+<html>
+	<body>
+		<script>
+
+			var curriedMethod = function(a) {
+			    return function(b) {
+				return a + b;
+			    };
+			};
+			var a=curriedMethod(5);
+			var b=a(5);
+			document.write(b);
+		</script>
+	</body>
+</html>
