@@ -1,0 +1,50 @@
+<!--
+@Author : Hamid Raza Noori
+@Date   : 1st Sep 2016
+@Purpose: To check the Object Equality
+-->
+<html>
+	<head>
+		<title>Equality Check</title>
+	</head>
+
+	<body>
+		<script type="text/javascript">
+			var str1 = new String("raja");
+			var str2 = "raja"
+			var num1 = new Number(12);
+			var num2 = 12;
+			var arr2 = new Array(11,12,13,14);
+			var arr1 = [11,12,13,14];
+			
+			document.write('Checking literal and using new keyword equality using <b>===</b> ::<br/">'+
+			'(new String("raja") === ("raja"))--> <b>'+
+			(str1 === str2)+"</b>");
+			document.write('<div style="color:red">\t str1 is type of ::'+
+			typeof str1 +"--------------  str2 is type of ::"+ typeof str2 +"</div>");			
+
+			document.write('<br/"> (new Number(12)) === (12) --><b>'+ (num1 === num2) +"</b>");
+			document.write('<div style="color:red">\t num1 is type of ::'+
+			typeof num1 +" ------------- num2 is type of ::"+ typeof num2 +"</div>");			
+
+			document.write('<br/"> (new Array('+arr1+')) === (['+arr2+']) --><b>'+ (arr1 === arr2) +"</b>");
+			document.write('<div style="color:red">\t arr1 is type of ::'+
+			typeof arr1 +"--------------  arr2 is type of ::"+ typeof arr2 +"</div>");	
+
+			document.write('<br/">Checking literal and using new keyword equality using  == ::<br/">'+
+			'(new String("raja") == ("raja"))--><b>'+(str1 == str2)+"</b>");
+			document.write('<div style="color:red">\t str1 is type of ::'+
+			typeof str1 +"--------------  str2 is type of ::"+ typeof str2 +"</div>");			
+
+			document.write('<br/"> (new Number(12)) == (12) --><b>'+ (num1 == num2) +"</b>");
+			document.write('<div style="color:red">\t num1 is type of ::'+
+			typeof num1 +" ------------- num2 is type of ::"+ typeof num2 +"</div>");			
+
+			document.write('<br/"> (new Array('+arr1+')) == (['+arr2+']) --><b>'+ (arr1 == arr2) +"</b>");
+			document.write('<div style="color:red">\t arr1 is type of ::'+
+			typeof arr1 +"--------------  arr2 is type of ::"+ typeof arr2 +"</div>");			
+			
+		
+		</script>
+	</body>
+</html>
