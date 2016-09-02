@@ -1,61 +1,64 @@
+<!--
+@Author : Hamid Raza Noori
+@Date   : 1st Sep 2016
+@Purpose: To Display the time on Screen and change the content on the basis time randomly
+-->
 <!DOCTYPE html>
 <html>
-<head>
-<title>Clock</title>
+	<head>
+		<title>Clock</title>
+		<script>
+			var myData = [
+			{"author":"abc","datePublish":"12/02/2005","publication":"Narayan"},
+			{"author":"mno","datePublish":"14/05/2004","publication":"GK Publication"},
+			{"author":"xyz","datePublish":"06/05/1995","publication":"Laxman"},
+			{"author":"ABC","datePublish":"09/02/1999","publication":"Nothing Publication"},
+			{"author":"MNO","datePublish":"25/06/2002","publication":"ABC Publication"}
+			];
 
 
-<script>
-var myData = [
-{"author":"abc","datePublish":"12/02/2005","publication":"Narayan"},
-{"author":"mno","datePublish":"14/05/2004","publication":"GK Publication"},
-{"author":"xyz","datePublish":"06/05/1995","publication":"Laxman"},
-{"author":"ABC","datePublish":"09/02/1999","publication":"Nothing Publication"},
-{"author":"MNO","datePublish":"25/06/2002","publication":"ABC Publication"}
-];
+			function getTimeMethod()
+			{
+			var myDate = new Date();
+			var txt = myDate.getHours() + ":" + myDate.getMinutes() + ":" + myDate.getSeconds();
 
+			document.getElementById("timeDisplay").innerHTML = txt;
+			document.getElementById("data").innerHTML = getSomeData();
+			var s = setTimeout(getTimeMethod,1000);
+			}
 
-function getTimeMethod()
-{
-var myDate = new Date();
-var txt = myDate.getHours() + ":" + myDate.getMinutes() + ":" + myDate.getSeconds();
+			/*var xmlhttp = new XMLHttpRequest();
+			var url = "myJSON.txt";
+			var myData;
 
-document.getElementById("timeDisplay").innerHTML = txt;
-document.getElementById("data").innerHTML = getSomeData();
-var s = setTimeout(getTimeMethod,1000);
-}
+			xmlhttp.onreadystatechange = function() {
+			    if (this.readyState == 4 && this.status == 200) {
+				 myData = JSON.parse(this.responseText);
+			    }
+			};
+			xmlhttp.open("GET", url, true);
+			xmlhttp.send();
+			*/
 
-/*var xmlhttp = new XMLHttpRequest();
-var url = "myJSON.txt";
-var myData;
+			function getSomeData()
+			{
+			var i=Math.floor(Math.random()*myData.length); //Math.floor(Math.random() * 11)
+			//return i;
+			var txtText="Author ::" + myData[i]["author"] ;
+			txtText = txtText + " ::<br> Date Of Published ::" + myData[i]["datePublish"];
+			txtText = txtText + "::<br> Publisher ::" + myData[i]["publication"];
+			return txtText;
+			}
 
-xmlhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-         myData = JSON.parse(this.responseText);
-    }
-};
-xmlhttp.open("GET", url, true);
-xmlhttp.send();
-*/
+		</script>
 
-function getSomeData()
-{
-var i=Math.floor(Math.random()*myData.length); //Math.floor(Math.random() * 11)
-//return i;
-var txtText="Author ::" + myData[i]["author"] ;
-txtText = txtText + " ::<br> Date Of Published ::" + myData[i]["datePublish"];
-txtText = txtText + "::<br> Publisher ::" + myData[i]["publication"];
-return txtText;
-}
+	</head>
 
-</script>
-
-</head>
-
-<body onload="getTimeMethod()"	>
-Time: <div id="timeDisplay">?</div>
-<br>
-<br>
-Data:<div id="data" style="color:red">?</div>
-</body>
+	<body onload="getTimeMethod()">
+		Time: <div id="timeDisplay">?</div>
+		<br>
+		<br>
+		Data:<div id="data" style="color:red">?</div>
+	</body>
 </html>
 
