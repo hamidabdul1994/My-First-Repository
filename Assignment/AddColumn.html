@@ -1,0 +1,49 @@
+<!--
+@Author : Hamid Raza Noori
+@Date   : 31st Aug 2016
+@Purpose: To add new row in table 
+-->
+<html>
+	<head>
+		<script>
+
+			function myCreateFunction() {
+
+			    var table = document.getElementById("myTable");
+			    var row = table.insertRow(-1);		//code for creating the new row and add to table
+			    var cell1 = row.insertCell(0);		//code to add new cell in row
+			    var cell2 = row.insertCell(1);		//code to add new cell in row
+			    cell1.innerHTML = "NEW Data1";		//code to set row data
+			    cell2.innerHTML = "NEW Data2";		//code to set row data
+			}
+
+			function myDeleteFunction() {
+			    document.getElementById("myTable").deleteRow(-1);
+			}
+		</script>
+	</head>
+
+	<body>
+		<div style="margin:50px">
+
+			<div align="right">
+				<button onclick = "myCreateFunction()" >Add Row</button>
+				<button onclick = "myDeleteFunction()" >Delete Row</button>
+			</div>
+
+			<div>
+				<table id="myTable" border="1">
+					<tr>
+						<th>First Head</th>
+						<th>Second Head</th>
+					</tr>
+					<tr>
+						<td>Data1</td>
+						<td>Data2</td>
+					</tr>
+				</table>
+			</div>
+
+		</div>
+	</body>
+</html>

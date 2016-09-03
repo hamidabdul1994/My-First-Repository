@@ -34,18 +34,18 @@
 			{
 
 			try{
-				/*var myElement = document.createElement("button");
-				var textValue = "Sample Button " + Count2();*/
-				var elements = document.body.childNodes;
+				var myElement = document.createElement("button");
+				var textValue = "Sample Button " + Count2();
+				/*var elements = document.body.childNodes;
 				var i = 0;
 				for(;i<elements.length;i++)
 				{
 				if(elements[i].nodeType != 3) continue
 					console.log(elements[i])
 				}
-				console.log(textValue);
-				/*var textnode = document.createTextNode(textValue);  // Create a text node
-				myElement.removeChild(textnode);*/
+				console.log(textValue);*/
+				var textnode = document.createTextNode(textValue);  // Create a text node
+				myElement.removeChild(textnode);
 			}catch(e)
 			{
 				console.log(e);
