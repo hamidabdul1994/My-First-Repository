@@ -10,17 +10,65 @@
 			function myFunction()
 			{
 
-			var links, i , linkArray;
-			linkArray = document.getElementsByTagName("a");
+				var links, j , i , linkArray;
+				linkArray = document.getElementsByTagName("a");
 
-			document.getElementById("link1").innerHTML = "Number of links are :: <b>" + linkArray.length + " <b>";
+				document.getElementById("link1").innerHTML = "Number of links are :: <b>" + linkArray.length + " <b>";
 
-			links = "";
-			for(i=0; i<linkArray.length; i++)
-			links += "<br>" + linkArray[i];
+				links = "";
+				j = 0;
+				for(i=0; i<linkArray.length; i++)
+				links += "<br>" + linkArray[i];
 
-			document.getElementById("link2").innerHTML = "Links are following::<b>" + links + "</b>";
+				document.getElementById("link2").innerHTML = "Links are following::<b>" + links + "</b>";
 			}
+
+			function AddButton()
+			{
+				var myElement = document.createElement("button");
+				myElement.appendChild(document.createTextNode("Sample Button " + Count() ));
+				document.body.appendChild(myElement);
+			}
+
+			function RemoveButton()
+			{
+
+			try{
+				/*var myElement = document.createElement("button");
+				var textValue = "Sample Button " + Count2();*/
+				var elements = document.body.childNodes;
+				var i = 0;
+				for(;i<elements.length;i++)
+				{
+				if(elements[i].nodeType != 3) continue
+					console.log(elements[i])
+				}
+				console.log(textValue);
+				/*var textnode = document.createTextNode(textValue);  // Create a text node
+				myElement.removeChild(textnode);*/
+			}catch(e)
+			{
+				console.log(e);
+			}
+
+			}
+
+			var Count2 = (function()
+			{
+				var j = 0;
+
+				return function () {return j+=1;}
+			})();
+
+			//Closure function
+
+			var Count = (function()
+			{
+				var j = 0;
+
+				return function () {return j+=1;}
+			})();
+
 		</script>
 	</head>
 
@@ -33,6 +81,9 @@
 		<a href="http://www.rediffmail">Rediffmail here</a><br>
 		<a href="http://www.ymail.com">Yahoomail here</a><br>
 		<button onclick = "myFunction()" >Check Link</button>
+
+		<button onclick = "AddButton()" >Add Button </button>
+		<button onclick = "RemoveButton()" >Remove Button </button>
 
 		<div id="link1">?</div>
 		<div id="link2">?</div>

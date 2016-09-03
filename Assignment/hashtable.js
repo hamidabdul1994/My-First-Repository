@@ -67,14 +67,6 @@ function HashTable(obj)
         return values;
     }
 
-    this.each = function(
-) {
-        for (var k in this.items) {
-            if (this.hasItem(k)) {
-                fn(k, this.items[k]);
-            }
-        }
-    }
 
     this.clear = function()
     {

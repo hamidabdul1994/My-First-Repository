@@ -27,9 +27,15 @@
 			var s = setTimeout(getTimeMethod,1000);
 			}
 
-			/*var xmlhttp = new XMLHttpRequest();
-			var url = "myJSON.txt";
-			var myData;
+			
+
+			function getSomeData()
+			{
+			/*debugger;
+			try{
+			var xmlhttp = new XMLHttpRequest();
+			var url = "myJSON.json";
+			var myData = {};
 
 			xmlhttp.onreadystatechange = function() {
 			    if (this.readyState == 4 && this.status == 200) {
@@ -38,10 +44,11 @@
 			};
 			xmlhttp.open("GET", url, true);
 			xmlhttp.send();
-			*/
-
-			function getSomeData()
+			}catch(e)
 			{
+			console.log(e.getmessage);
+			}*/
+
 			var i=Math.floor(Math.random()*myData.length); //Math.floor(Math.random() * 11)
 			//return i;
 			var txtText="Author ::" + myData[i]["author"] ;

@@ -1,0 +1,29 @@
+<html>
+<body>
+
+  <div>Allowed readers:</div>
+
+  <ul>
+
+    <li>John</li>
+
+    <li>Bob</li>
+
+  </ul>
+  <!-- a comment node -->
+  <script>  
+
+     var childNodes = document.body.childNodes
+
+     for(var i=0; i<childNodes.length; i++) {
+
+       if (childNodes[i].nodeType != 3) continue
+
+       alert(childNodes[i]+i)
+
+     }
+
+  </script>
+
+</body>
+</html>
