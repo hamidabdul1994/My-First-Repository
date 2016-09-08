@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+
+<body ng-app="myApp" align="center">
+  <h2>My Basic Page for route </h2>
+  <a href="#1">hello</a>&nbsp;<a href="#2">GM</a>&nbsp;<a href="#3">GA</a>&nbsp;
+  <a href="#4">External code</a>
+<div ng-view></div>
+  <script>
+angular.module("myApp",["ngRoute"])
+.config(function($routeProvider){
+  $routeProvider
+  .when("/",{template:"<span style='color:green'>No Message</span>"})
+  .when("/1",{template:"<span style='color:green'>Hello! How do you do??</span>"})
+  .when("/2",{template:"<span style='color:yellow'>Good Monring!</span>"})
+  .when("/3",{template:"<span style='color:red'>Good Afternoon</span>"})
+  .when("/4",{templateUrl:"http://www.w3schools.com/angular/main.htm"})
+});
+  </script>
+</body>
+</html>
