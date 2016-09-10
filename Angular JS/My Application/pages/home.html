@@ -1,1 +1,41 @@
-My Home page
+<!-- this is my Home page which will display my home content -->
+
+<ul class="w3-navbar w3-left-align w3-light-grey w3-center w3-top w3-large">
+    <li class="w3-left" style="width:25% !important"><a href="#main" class="w3-text-teal">Home</a></li>
+    <li class="w3-left" style="width:25% !important"><a href="#about">About</a></li>
+    <li class="w3-left" style="width:25% !important"><a href="#contact">Contact</a></li>
+    <li class="w3-left" style="width:25% !important"><a href="#">Logout</a></li>
+</ul>
+
+<br>
+<div class="w3-margin-top">
+    <header class=" w3-teal">
+        <h1>Welcome to Login module.........
+          <span style="font-size:20px;float:right;margin:10px">Welcome {{userGlobals.currentUser.username}}</span>
+        </h1>
+    </header>
+    <h3>This is my sample data </h3>
+    <table class="w3-table w3-striped w3-bordered">
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Points</th>
+        </tr>
+        <tr>
+            <td>Jill</td>
+            <td>Smith</td>
+            <td>50</td>
+        </tr>
+        <tr>
+            <td>Eve</td>
+            <td>Jackson</td>
+            <td>94</td>
+        </tr>
+        <tr>
+            <td>Adam</td>
+            <td>Johnson</td>
+            <td>67</td>
+        </tr>
+    </table>
+
+</div>

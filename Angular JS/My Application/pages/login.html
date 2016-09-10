@@ -1,7 +1,17 @@
-<h2>Welcome to Login module.........</h2>
-<form name="myLoginForm">
-    Enter Your Username:<input type="text" name="userName" ng-model="userBind" /><br><br>
-    Enter your password:&nbsp;<input type="password" name="password" ng-model="passBind" /><br><br>
-    <span ng-show="flagValue" style="color:red">Authentication failed!!!  </span><br>
-    <button type="submit" ng-click="doLogin()">Login</button> &nbsp; <button type="reset">Reset</button>
+<header class="w3-container w3-teal">
+  <h1>Welcome to Login module.........</h1>
+</header>
+<div class=" w3-half w3-margin-top" style="margin-left:25%">
+
+<form name="myLoginForm" class="w3-container w3-card-4">
+    <label class="w3-label">Enter Your Username:</label>
+    <input class="w3-input" style="width:90%" type="text" name="userName" ng-model="username" /><br><br>
+    <label class="w3-label w3-validate">Enter your password:&nbsp;</label>
+    <input class="w3-input" style="width:90%" type="password" name="password" ng-model="password" /><br><br>
+    <!-- <span ng-show="flagValue" style="color:red">Authentication failed!!!  </span><br> -->
+    <div ng-show="error" style="color:red" class="w3-panel w3-card-8">{{error}}</div>
+    <button type="submit" ng-click="login()" class="w3-btn w3-section w3-teal w3-ripple" >Login</button> &nbsp;
+    <button type="reset" ng-click="reset()" class="w3-btn w3-section w3-teal w3-ripple" >Reset</button>
 </form>
+
+</div>
