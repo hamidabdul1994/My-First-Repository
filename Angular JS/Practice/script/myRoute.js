@@ -1,11 +1,13 @@
+//angular.module("myApp",[]);
+
 angular.module("myApp",["ngRoute"])
-.config(["$routeProvider","$rootScope","$location",function($routeProvider,$rootScope,$location){
+.config(function($routeProvider){
       $routeProvider
-      .when("/login",{templateUrl:"script/view/login.html",controller:'myCtrl'})
-        .when("/main",{templateUrl:"script/view/home.html",controller:'myLogoutCtrl'})
+      .when("/login",{templateUrl:"view/login.html",controller:'myCtrl'})
+        .when("/main",{templateUrl:"view/home.html",controller:'myLogoutCtrl'})
           .when("/4",{templateUrl:"http://www.w3schools.com/angular/main.htm"})
           .when("/4",{templateUrl:"http://www.w3schools.com/angular/main.htm"})
-          .otherwise({
+          .otherwise("/",{
             redirectTo:"/login"
           });
-    }])
+    });

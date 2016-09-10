@@ -1,0 +1,29 @@
+<html>
+   <head>
+      <script type = "text/javascript" src = "node_modules/firebase/firebase.js"></script>
+      <script src="firebase_config.js" ></script>
+      <script>
+var email = "myemail@email.com";
+var password = "mypasswword";
+
+firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+   console.log(error.code);
+   console.log(error.message);
+});
+console.log("successed");
+
+//Sign in my mail
+// var email = "myemail@mymail.com";
+// var password = "myemailpassword";
+//
+// firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+//    console.log("code::->"+error.code);
+//    console.log("Error ::->"+error.message);
+// });
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

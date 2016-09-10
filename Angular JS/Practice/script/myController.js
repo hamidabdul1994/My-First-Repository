@@ -1,5 +1,5 @@
 angular.module("myApp")
-.controller("myCtrl",["$scope","$location","$rootScope", function($scope,$location,$rootScope) {
+.controller("myCtrl",function($scope,$location,$rootScope) {
         console.log(" Main inside controller")
         $scope.flagValue = false;
 
@@ -29,4 +29,4 @@ angular.module("myApp")
               }
             }
         }
-    }]);
+    });
