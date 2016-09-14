@@ -15,7 +15,7 @@ myApp.config(["$routeProvider", function($routeProvider) {
             controller: "myMainController"
         })
         .when("/contact", {
-            templateUrl: "pages/conatct.html",
+            templateUrl: "pages/contact.html",
             controller: "myMainController"
         })
         .otherwise({
