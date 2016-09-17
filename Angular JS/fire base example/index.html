@@ -56,12 +56,12 @@
     // var playersRef = ref.child("John");
     // console.log(playersRef.key);
 
-    // Filter
-    // var playersRef = firebase.database().ref("players/");
-    //
-    // playersRef.orderByChild("name").startAt("Amanda").on("child_added", function(data) {
-    //    console.log("Start at filter: " + data.val().name);
-    // });
+  //  Filter
+    var playersRef = firebase.database().ref("players/");
+
+    playersRef.orderByChild("name").equalTo("Amanda").on("child_added", function(data) {
+       console.log("Start at filter: " + data.val().name);
+    });
     //
     // playersRef.orderByChild("name").endAt("Amanda").on("child_added", function(data) {
     //    console.log("End at filter: " + data.val().name);

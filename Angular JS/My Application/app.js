@@ -11,12 +11,12 @@ myApp.config(["$routeProvider", function($routeProvider) {
             controller: "myMainController"
         })
         .when("/about", {
-            template: "Here i have my About content",
+            templateUrl: "pages/about.html",
             controller: "myMainController"
         })
-        .when("/logout", {
-            templateUrl: "pages/logout.html",
-            controller: "myLoginController"
+        .when("/contact", {
+            templateUrl: "pages/contact.html",
+            controller: "myMainController"
         })
         .otherwise({
             redirectTo: "/login"

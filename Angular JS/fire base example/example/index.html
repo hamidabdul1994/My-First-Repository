@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <script src="/home/bridgeit/Practice/Angular JS/fire base example/node_modules/angular/angular.min.js"></script>
+    <script src="/home/bridgeit/Practice/Angular JS/fire base example/node_modules/firebase/firebase.js"></script>
+    <script src="/home/bridgeit/Practice/Angular JS/fire base example/node_modules/angularfire/dist/angularfire.js"></script>
+
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.min.js"></script> -->
+
+    <!-- <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script> -->
+
+    <!-- <script src='https://cdn.firebase.com/v0/firebase.js'></script> -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/3.0.5/firebase.js"></script> -->
+
+
+    <!-- <script src='http://cdnjs.cloudflare.com/ajax/libs/angularFire/0.5.0/angularfire.min.js'></script> -->
+
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular-route.min.js"></script> -->
+    <script src="controller.js"></script>
+
+    <title>Document</title>
+</head>
+
+<body ng-app="myApp">
+    <div ng-controller="loginCtrl">
+        <!-- <div ng-view></div> -->
+        <div>
+            <center>
+                <form id="myLogin">
+                    <h1> LOGIN FORM</h1> Username: <input type="text" id="username" ng-model="email"></br>
+                    </br>
+                    Password: <input type="password" id="password" ng-model="password"></br>
+                    </br>
+                    <button type="button" ng-click="submit()">Login</button>
+                </form>
+            </center>
+        </div>
+
+    </div>
+</body>
+
+</html>
