@@ -8,7 +8,7 @@ myApp.config(function($routeProvider) {
         })
         .when("/main", {
             templateUrl: "view/home.html"
-          //  controller: "mainController"
+           controller: "mainController"
         })
         .when("/register", {
             templateUrl: "view/signup.html"
@@ -27,11 +27,11 @@ myApp.run(function($rootScope, $location, $cookies) {
     //      $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
     //  }
 
-    // $rootScope.$on('$locationChangeStart', function(event, next, current) {
-    //     // redirect to login page if not logged in
-    //     console.log("$on running.......");
-    //     if ($location.path() !== '/login' && !$rootScope.userGlobals.currentUser) {
-    //         $location.path('/login');
-    //     }
-    // });
+    $rootScope.$on('$locationChangeStart', function(event, next, current) {
+        // redirect to login page if not logged in
+        console.log("$on running.......");
+        if (($location.path() !== '/login' || $location.path() !== '/register' ) && !$rootScope.userGlobals.currentUser) {
+            $location.path('/login');
+        }
+    });
 });
