@@ -1,0 +1,8 @@
+//var buf require
+var buff = new Buffer(26);
+var i;
+
+for(i=0;i<26;i++)
+{
+
+}
