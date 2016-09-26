@@ -1,44 +1,48 @@
-angular.module("myApp")
-    .controller("teamInfoCtrl", function($scope, $firebase, $stateParams) {
-       var teamName = $stateParams.teamname;
-      //Refference to take data from Firebase Database
-      var ref = firebase.database().ref(teamName);
-      ref.on("value", function(snapshot) {
-          copyArray(snapshot.val());
+var app = angular.module("myApp")
+    .controller("teamInfoCtrl", function($scope, $firebase, $stateParams,$timeout) {
+      console.log("Controller call");
+        var teamName = $stateParams.teamname;
+
+        //Refference to take data from Firebase Database
+        var ref = firebase.database().ref(teamName);
+        ref.on("value", function(snapshot) {
+            copyArray(snapshot.val());
         });
-      }, function(error) {
-          console.log("Error: " + error.code); //
-      });
 
-      Copy the path and calling the URL path function to take Google Cloud
-      var copyArray = function(teamValue) {
-          //var i;
-          $scope.slides = [];
-          angular.forEach(teamValue , function (value,key){
+//Copy the path and calling the URL path function to take Google Cloud
+function copyArray(teamValue) {
+    $scope.teamDetails = [];
+    angular.forEach(teamValue, function(value, key) {
+            getMyImage(value, function(url, teamObj) {
+                $timeout(function(){
+                  $scope.teamDetails.push({
+                    'src': url,
+                    'playerName': teamObj.player_name,
+                    'playerDOB': teamObj.player_dob,
+                    'playerBattingStyle': teamObj.player_batting_style,
+                    'playerBowlingStyle': teamObj.player_bowling_style,
+                    'playerRole': teamObj.player_role
+                });//closing of Push operation
+              },10);
+            }); //Closing The getMyImage Method callback method
+    });//Closing The ForEAch Method
 
-        });
-         {
-              $scope.getMyImage(imageLoc[i].team_img_url, imageLoc[i].team_name, function(url, caption) {
-                  $scope.slides.push({
-                      'src': url,
-                      'caption': caption,
-                      'url': caption.replace(/\s+/g, '')
-                  });
-              });
-          }
-      }
+}
 
 
-      //Function to Get image url from google cloud
-      var getMyImage = function(path, caption, callback) {
+//Function to Get image url from google cloud
+function getMyImage(teamObj, callback) {
 
-          var storageRef = firebase.storage().ref();
-          storageRef.child(path).getDownloadURL().then(function(url) {
+  var storageRef = firebase.storage().ref();
+  storageRef.child(teamObj.player_img_url).getDownloadURL().then(function(url) {
 
-              callback(url, caption);
-          }).catch(function(error) {
-              // Handle any errors
-          });
-      }
+      callback(url, teamObj);
+  }).catch(function(error) {
+      // Handle any errors
+  });
+  }
+//Closing the getMyImage Function
 
-    });
+
+});
+//CLossing Controller

@@ -35,11 +35,12 @@ angular.module("myApp")
         });
 
         //Copy the path and calling the URL path function to take Google Cloud
-        var copyArray = function(imageLoc) {
+        // var copyArray = function(imageLoc) {
+        function copyArray(imageLoc){
             //var i;
             $scope.slides = [];
             for (i in imageLoc) {
-                $scope.getMyImage(imageLoc[i].team_img_url, imageLoc[i].team_name, function(url, caption) {
+                getMyImage(imageLoc[i].team_img_url, imageLoc[i].team_name, function(url, caption) {
                     $scope.slides.push({
                         'src': url,
                         'caption': caption,
@@ -51,7 +52,7 @@ angular.module("myApp")
 
 
         //Function to Get image url from google cloud
-        $scope.getMyImage = function(path, caption, callback) {
+        function getMyImage(path, caption, callback) {
 
             var storageRef = firebase.storage().ref();
             storageRef.child(path).getDownloadURL().then(function(url) {

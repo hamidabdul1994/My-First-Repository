@@ -1,8 +1,4 @@
 angular.module("myApp", ["firebase", "angular-carousel-3d", "ui.router"])
-    .controller("myIplctrl", function($scope, $firebase, $timeout, $log) {
-
-        //Controller end
-    })
     .config(function($stateProvider, $urlRouterProvider) {
 
         $urlRouterProvider.otherwise('/home');
