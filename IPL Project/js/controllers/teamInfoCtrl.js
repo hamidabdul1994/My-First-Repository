@@ -1,6 +1,6 @@
 var app = angular.module("myApp")
-    .controller("teamInfoCtrl", function($scope, $firebase, $stateParams,$timeout) {
-      console.log("Controller call");
+    .controller("teamInfoCtrl", function($scope, $firebase, $stateParams,$timeout,$mdDialog) {
+
         var teamName = $stateParams.teamname;
 
         //Refference to take data from Firebase Database
@@ -26,8 +26,7 @@ function copyArray(teamValue) {
               },10);
             }); //Closing The getMyImage Method callback method
     });//Closing The ForEAch Method
-
-}
+}// Closing copyArray Method
 
 
 //Function to Get image url from google cloud
@@ -43,6 +42,24 @@ function getMyImage(teamObj, callback) {
   }
 //Closing the getMyImage Function
 
+$scope.showAlert = function(ev,index) {
 
+   // Appending dialog to document.body to cover sidenav in docs app
+   // Modal dialogs should fully cover application
+   // to prevent interaction outside of dialog
+
+   var id = '#a'+index;
+   console.log(id);
+   $mdDialog.show(
+     $mdDialog.alert()
+       .parent(angular.element(document.querySelector(id)))
+       .clickOutsideToClose(true)
+       .title('This is an alert title')
+       .textContent('You can specify some description text in here.')
+       .ariaLabel('Alert Dialog Demo')
+       .ok('Got it!')
+       .targetEvent(ev)
+   );
+ };
 });
-//CLossing Controller
+//Clossing Controller

@@ -1,72 +1,11 @@
-<nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-            <a class="navbar-brand" href="#">Logo</a>
-        </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
-            <ul class="nav navbar-nav">
-                <li><a href="#">Home</a></li>
-                <li class="active"><a href="#">Team Info</a></li>
-                <li><a href="#">Deals</a></li>
-                <li><a href="#">Stores</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><span class="glyphicon glyphicon-user"></span> Your Account</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<!-- My Navifgation Directive -->
+<navigation></navigation>
 
 <div class="container">
 <h2 align="center">Team info<h2>
 
 <div ng-repeat="team in teamDetails">
-    <div class="col-lg-4">
-      <div class="w3-card-4" style="width:auto; margin:10px; height:470px">
-          <header class="w3-container w3-green">
-          <center>  <h3>{{team.playerName}}</h3></center>
-          </header>
-
-          <div class="w3-container" align="center">
-            <img ng-src="{{team.src}}" class="img-rounded" alt="Loading..." width="250" height="280" />
-          </div><br/>
-
-          <footer class="w3-container w3-green">
-            <h5>Batting Style:<strong>{{team.playerBattingStyle}}</strong></h5>
-            <h5>Bowling Style:<strong>{{team.playerBowlingStyle}}</strong></h5>
-            <h5>Player Role:<strong>{{team.playerRole}}</strong></h5>
-          </footer>
-        </div>
-
-      <!-- <table class="table">
-        <tr>
-          <td colspan="2"><img ng-src="{{team.src}}" class="img-rounded" alt="Loading..." width="250" height="320" /></td>
-        </tr>
-        <tr>
-          <td>Player Name</td>
-          <td><strong>{{team.playerName}}</strong></td>
-        </tr>
-        <tr>
-          <td>Player DOB</td>
-          <td>{{team.playerDOB}}</td>
-        </tr>
-        <tr>
-          <td>Player Batting Style</td>
-          <td>{{team.playerBattingStyle}}</td>
-        </tr>
-        <tr>
-          <td>PLayer Role</td>
-          <td>{{team.playerRole}}</td>
-        </tr>
-      </table> -->
-
-    </div>
+<!-- MyCardImage Directive for display Card image and players details -->
+<my-card-image team="team" index="$index"></my-card-image>
 </div>
 </div>

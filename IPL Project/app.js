@@ -1,4 +1,4 @@
-angular.module("myApp", ["firebase", "angular-carousel-3d", "ui.router"])
+angular.module("myApp", ["firebase", "angular-carousel-3d", "ui.router" ,"ngMaterial"])
     .config(function($stateProvider, $urlRouterProvider) {
 
         $urlRouterProvider.otherwise('/home');

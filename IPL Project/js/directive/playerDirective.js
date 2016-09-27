@@ -1,0 +1,19 @@
+angular.module("myApp")
+.directive("navigation",function(){
+  return{
+    restrict:"E",
+    templateUrl:"view/navigation.html"
+  };
+})
+.directive("myCardImage",function(){
+  console.log("My Directive");
+  return{
+    restrict:"E",
+    templateUrl:"view/cardImage.html",
+    scope:{
+      team:"=",
+      index:"="
+    },
+    controller:"teamInfoCtrl"
+  };
+});

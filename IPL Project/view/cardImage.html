@@ -1,0 +1,21 @@
+<div class="col-lg-4">
+  <div class="w3-card-4" style="width:auto; margin:10px; height:470px">
+      <header class="w3-container w3-green">
+      <center>  <h3>{{team.playerName}}</h3></center>
+      </header>
+
+      <div class="w3-container md-padding" align="center" id="a{{index}}" ng-cloak>
+      
+        <div class="dialog-demo-content" layout="row" layout-wrap layout-margin layout-align="center">
+        <img ng-src="{{team.src}}" ng-click="showAlert($event,index)" class="img-rounded" alt="Loading..." style="max-width:250; max-height:280" />
+      </div>
+      </div><br/>
+
+      <footer class="w3-container w3-green">
+        <h5>Batting Style:<strong>{{team.playerBattingStyle}}</strong></h5>
+        <h5>Bowling Style:<strong>{{team.playerBowlingStyle}}</strong></h5>
+        <h5>Player Role:<strong>{{team.playerRole}}</strong></h5>
+      </footer>
+    </div>
+
+  </div>
