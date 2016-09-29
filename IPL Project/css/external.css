@@ -5,6 +5,7 @@ body {
     -o-background-size: cover;
     background-size: cover;
 }
+
 /* Remove the navbar's default rounded borders and increase the bottom margin */
 .navbar {
 margin-bottom: 50px;

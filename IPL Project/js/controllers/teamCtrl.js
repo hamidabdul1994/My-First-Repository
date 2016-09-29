@@ -1,10 +1,15 @@
+// File Name:teamCtrl.js
+// Created By:Hamid Raza Noori
+// date:23/09/2016
+// Purpose:To Control the team data
+
 angular.module("myApp")
     .controller("teamNameCtrl", function($scope, $firebase) {
 
         // SLIDES WITH CAPTIONS
         $scope.slides = [{
             'src': 'loading.gif',
-            caption: '  '
+            caption: ' '
         }];
 
         //Option Object for Setting the carousel-3d screen
@@ -35,10 +40,8 @@ angular.module("myApp")
         });
 
         //Copy the path and calling the URL path function to take Google Cloud
-        // var copyArray = function(imageLoc) {
-        function copyArray(imageLoc){
-            //var i;
-            $scope.slides = [];
+        function copyArray(imageLoc) {
+            $scope.slides = []; //Clearing $scope.slides variable
             for (i in imageLoc) {
                 getMyImage(imageLoc[i].team_img_url, imageLoc[i].team_name, function(url, caption) {
                     $scope.slides.push({
@@ -49,6 +52,7 @@ angular.module("myApp")
                 });
             }
         }
+        // copyArray method end
 
 
         //Function to Get image url from google cloud
@@ -56,12 +60,12 @@ angular.module("myApp")
 
             var storageRef = firebase.storage().ref();
             storageRef.child(path).getDownloadURL().then(function(url) {
-
                 callback(url, caption);
             }).catch(function(error) {
                 // Handle any errors
             });
         }
+        //getMyImage Method End
 
         //Controller end
     });
