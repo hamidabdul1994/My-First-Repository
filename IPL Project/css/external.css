@@ -5,7 +5,12 @@ body {
     -o-background-size: cover;
     background-size: cover;
 }
-
+.imgCustom{
+  max-width:100%;
+  max-height:auto;
+  min-width:100%;
+  min-height:auto;
+}
 /* Remove the navbar's default rounded borders and increase the bottom margin */
 .navbar {
 margin-bottom: 50px;

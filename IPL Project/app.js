@@ -3,8 +3,8 @@
 // date:21/09/2016
 // Purpose:Model of IPL Application and give the different states
 
-angular.module("myApp", ["firebase", "angular-carousel-3d", "ui.router" ,"ngMaterial"])
-    .config(function($stateProvider, $urlRouterProvider) {
+angular.module("myApp", ["firebase", "angular-carousel-3d", "ui.router" ,"ngMaterial","ngImgCache","angular-cache"])
+    .config(function($stateProvider, $urlRouterProvider,CacheFactoryProvider) {
 
         $urlRouterProvider.otherwise('/home');
 
