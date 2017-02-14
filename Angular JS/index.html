@@ -21,6 +21,14 @@
 </div>
 
 <script>
+function getFileNameFromHttpResponse(contentDispositionHeader) {
+  //console.log(httpResponse);
+    // var contentDispositionHeader = httpResponse.getResponseHeader('Content-Disposition');
+    //  ['Content-Disposition']
+    // console.log(contentDispositionHeader);
+     var result = contentDispositionHeader.split(';')[1].trim().split('=')[1];
+     return result.replace(/"/g, '');
+ }
 var app = angular.module("myApp",[]);
 app.controller("myCtrl",function($scope,$http,$window){
 var data="{\"selectedCompany\":[{\"companyName\":\"Next Education\",\"engineerList\":[\"40001EI\",\"40002EI\",\"40003EI\"]} ,\n{\"companyName\":\"Craft Villa\",\"engineerList\":[\"40011EI\",\"40022EI\",\"400033EI\"]}]}";
@@ -33,9 +41,9 @@ config.headers={
     "postman-token": "cd138432-aafd-5243-316e-46fa685f8a7e"
   };
 
-$http.post("http://localhost:3000/downloadAttendanceReport",data,config).success(function(response){
-  console.log(response);
-         var fileName = "Report.zip";
+$http.post("http://localhost:3000/downloadAttendanceReport",data,config).success(function(response,status,headers,config){
+  console.log(getFileNameFromHttpResponse(headers('Content-Disposition')),config);
+         var fileName = getFileNameFromHttpResponse(headers('Content-Disposition')) || "Report.zip";
          saveAs(response, fileName);
  var URL = $window.URL || $window.webkitURL || $window.mozURL || $window.msURL;
     /*if ( URL ) {
