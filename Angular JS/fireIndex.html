@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://www.gstatic.com/firebasejs/3.6.5/firebase.js"></script>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAGHEgm48s7_QkBwLw0UX-yCBLQg06zvdA",
+    authDomain: "fir-bef76.firebaseapp.com",
+    databaseURL: "https://fir-bef76.firebaseio.com",
+    storageBucket: "fir-bef76.appspot.com",
+    messagingSenderId: "207871344593"
+  };
+  firebase.initializeApp(config);
+  var ref = firebase.database().ref("employeeAttendace/427188EI").child("2017/1");
+ // ref.set({"day2":{"attendanceStatus":"Leave","markedStatus":"true","punchIn":"NA","punchOut":"NA","reason":"Had some work"},"day3":{"attendanceStatus":"Present","markedStatus":"true","punchIn":"8:30 AM","punchOut":"7:30 PM","reason":"NA"},
+ // 'day5':{"attendanceStatus":"Present","markedStatus":"true","punchIn":"8:30AM","punchOut":"7:30 PM","reason":"NA"},"day8":{"attendanceStatus":"Present","markedStatus":"true","punchIn":"8.30 AM","punchOut":"7.30 PM","reason":"NA"},"day11":{"attendanceStatus":"CompLeave","markedStatus":"true","punchIn":"NA","punchOut":"NA","reason":"NA"},
+ // "day16":{"attendanceStatus":"Present","markedStatus":"true","punchIn":"8.30AM","punchOut":"7.30 PM","reason":"NA"},"day4":{"attendanceStatus":"Present","markedStatus":"true","punchIn":"8:30 AM","punchOut":"7:30 PM","reason":"NA"},
+ // "day18":{"attendanceStatus":"CompLeave","markedStatus":"true","punchIn":"NA","punchOut":"NA","reason":"NA"},"day19":{"attendanceStatus":"Present","markedStatus":"true","punchIn":"8.30 AM","punchOut":"7.30 PM","reason":"NA"},
+ // "day21":{"attendanceStatus":"Present","markedStatus":"true","punchIn":"8.30AM","punchOut":"7.30 PM","reason":"NA"},"day23":{"attendanceStatus":"CompLeave","markedStatus":"true","punchIn":"NA","punchOut":"NA","reason":"NA"},"day25":{"attendanceStatus":"CompLeave","markedStatus":"true","punchIn":"NA","punchOut":"NA","reason":"NA"},
+ // "day26":{"attendanceStatus":"Present","markedStatus":"true","punchIn":"8.30AM","punchOut":"7.30 PM","reason":"NA"},"day28":{"attendanceStatus":"CompLeave","markedStatus":"true","punchIn":"NA","punchOut":"NA","reason":"NA"},"day30":{"attendanceStatus":"Leave","markedStatus":"true","punchIn":"NA","punchOut":"NA","reason":"Fever"},
+ // "day31":{"attendanceStatus":"Present","markedStatus":"true","punchIn":"8.30AM","punchOut":"7.30 PM","reason":"NA"}});
+ // ref.set({"day1":{"attendanceStatus":"CompLeave","markedStatus":"true","punchIn":"NA","punchOut":"NA","reason":"NA"}});
+  ref.once("value").then(function (data) {
+    // console.log(data.val());
+// for (var v in data.val()["2017"]["1"]) {
+//   console.log(v);
+// }
+for (var d in data.val()) {
+var day =Number.parseInt(d.replace(/^\D+/g, ''));
+var temp={};
+temp[day]=data.val()[d];
+console.log(temp);
+}
+console.log(data.val());
+  });
+</script>
+  </body>
+</html>

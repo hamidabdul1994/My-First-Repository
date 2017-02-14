@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/1.7.3/fabric.js" charset="utf-8"></script>
+    <!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/fabric.js/1.1.0/fabric.all.min.js" charset="utf-8"></script> -->
+    <script type="text/javascript">
+    // reference canvas element (with id="c")
+// var canvasEl = document.getElementById('c');
+//
+// // get 2d context to draw on (the "bitmap" mentioned earlier)
+// var ctx = canvasEl.getContext('2d');
+//
+// // set fill color of context
+// ctx.fillStyle = 'red';
+//
+// // create rectangle at a 100,100 point, with 20x20 dimensions
+// ctx.fillRect(100, 100, 20, 20);
+
+    </script>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+<!-- <canvas id="c" style="" width="450px" height="300">2d</canvas> -->
+<canvas id="d" style="" width="650px" height="800px"  style="display:inline">2d</canvas>
+
+<script type="text/javascript">
+// //console.log(new fabric.Plygon());
+// var canvas = new fabric.Canvas('d');
+// var path = new fabric.Path('M 0 0 L 200 100 L 170 200 z');
+// path.set({ left: 120, top: 120 });
+// canvas.add(path);
+// var canvas = new fabric.Canvas('c');
+//
+// // create a rectangle object
+// var rect = new fabric.Rect({
+//   left: 100,
+//   top: 100,
+//   fill: 'red',
+//   width: 20,
+//   height: 20
+// });
+//
+//
+// // "add" rectangle onto canvas
+// canvas.add(rect);
+var lineCrtr = (function() {
+  var lineCrtrInstance;
+  var  WBConstant={MOUSE_DOWN:"mouse:down",MOUSE_UP:"mouse:up"};
+  function lineCreator() {
+    var lineCrtrObj = this;
+    lineCrtrObj.canvas = null;
+    lineCrtrObj.isMouseDown = false;
+    lineCrtrObj.tempCanvasLastPoint = null;
+    lineCrtrObj.toolProperty = null;
+    lineCrtrObj.count = 0;
+    lineCrtrObj.parallelogramPoint = [];
+    // polylineCrtrObj.points = [],
+    this.initialize = function(canvas) {
+      // polylineCrtrObj.count=0;
+      lineCrtrObj.canvas = canvas;
+      lineCrtrObj.canvas.isDrawingMode = false;
+    }
+
+    this.registerEvent = function(canvas) {
+      lineCrtrObj.initialize(canvas);
+      lineCrtrObj.canvas.on(WBConstant.MOUSE_DOWN, onMouseDown);
+      // polylineCrtrObj.canvas.on( WBConstant.MOUSE_MOVE , onMouseMove );
+      lineCrtrObj.countUp=0;
+      // lineCrtrObj.canvas.on( WBConstant.MOUSE_UP , onMouseUp );
+    }
+
+    this.unRegisterEvent = function() {
+      lineCrtrObj.canvas.off(WBConstant.MOUSE_DOWN, onMouseDown);
+      //  polylineCrtrObj.canvas.off( WBConstant.MOUSE_MOVE , onMouseMove );
+      //  polylineCrtrObj.canvas.off( WBConstant.MOUSE_UP , onMouseUp );
+    }
+
+    this.reset = function() {
+      lineCrtrObj.canvas = null;
+    }
+
+    this.setToolProperty = function(toolProperty) {
+      lineCrtrObj.toolProperty = toolProperty;
+    }
+function onMouseDown(options) {
+    var point = lineCrtrObj.canvas.getPointer(options.e);
+    lineCrtrObj.parallelogramPoint.push(point);
+    if(lineCrtrObj.parallelogramPoint.length>=3){
+      console.log(lineCrtrObj.parallelogramPoint);
+      lineCrtrObj.unRegisterEvent();
+      for(var i =0;i<2;i++){
+        var points =[lineCrtrObj.parallelogramPoint[i].x,lineCrtrObj.parallelogramPoint[i].y,lineCrtrObj.parallelogramPoint[i+1].x,lineCrtrObj.parallelogramPoint[i+1].y]
+        console.log(points);
+        line = new fabric.Line(points, {   /*passing points array when drawing line*/
+          stroke: "red"
+        });
+        lineCrtrObj.canvas.add(line);
+      }
+      var yPoint = lineCrtrObj.parallelogramPoint[2].y-(lineCrtrObj.parallelogramPoint[1].y-lineCrtrObj.parallelogramPoint[0].y); //Not for -ve
+      var xPoint = lineCrtrObj.parallelogramPoint[2].x-(lineCrtrObj.parallelogramPoint[1].x-lineCrtrObj.parallelogramPoint[2].x);
+      for(var i =0;i<3;i+=2){
+        var points =[lineCrtrObj.parallelogramPoint[i].x,lineCrtrObj.parallelogramPoint[i].y,xPoint,yPoint];
+        console.log(points);
+        line = new fabric.Line(points, {   /*passing points array when drawing line*/
+          stroke: "red"
+        });
+        lineCrtrObj.canvas.add(line);
+      }
+
+    }
+
+      // lineCrtrObj.isMouseDown = true;
+      // var point = lineCrtrObj.canvas.getPointer(options.e);  /*get points from fabric*/
+      // console.log(point);
+      // var points = [point.x, point.y,200,100];   /*storing points in points array*/
+      // line = new fabric.Line(points, {   /*passing points array when drawing line*/
+      //   stroke: "red",
+      //   left: 200,
+      //   top : 300
+      //   //lineCrtrObj.toolProperty.stroke
+      // });
+      // console.log(line);
+      // // line['id'] = new Date().getTime();
+      // lineCrtrObj.canvas.add(line);
+      // lineCrtrObj.canvas.renderAll();
+    }
+
+    function onMouseMove(options) {
+
+      // dispatch drawing event if user is drwaing on canvas
+      if (lineCrtrObj.isMouseDown && !lineCrtrObj.canvas.isDrawingMode) {
+        var point = lineCrtrObj.canvas.getPointer(options.e);
+        line.set({
+          x2: point.x,
+          y2: point.y
+        });
+        lineCrtrObj.canvas.renderAll();
+        // WBEvent.dispatch(WBConstant.PUBLISH_MESSAGE, [line, WBConstant.OBJECT_MODIFIED_OPERATION]);
+      }else {
+        console.log("else");
+      }
+    }
+    }
+    return {
+      getInstance: function() {
+        if (!lineCrtrInstance) {
+          lineCrtrInstance = new lineCreator();
+        }
+        return lineCrtrInstance;
+      }
+    };
+
+})();
+var canvas = new fabric.Canvas('d');
+lineCrtr.getInstance().registerEvent(canvas);
+/*
+var polylineCrtr = (function() {
+  var polylineCrtrInstance;
+  var  WBConstant={MOUSE_DOWN:"mouse:down",MOUSE_UP:"mouse:up"};
+  function polylineCreator() {
+    var polylineCrtrObj = this;
+    polylineCrtrObj.canvas = null;
+    polylineCrtrObj.isMouseDown = false;
+    polylineCrtrObj.tempCanvasLastPoint = null;
+    polylineCrtrObj.toolProperty = null;
+    polylineCrtrObj.count = 0;
+    // polylineCrtrObj.points = [],
+    this.initialize = function(canvas) {
+      // polylineCrtrObj.count=0;
+      polylineCrtrObj.canvas = canvas;
+      polylineCrtrObj.canvas.isDrawingMode = false;
+    }
+
+    this.registerEvent = function(canvas) {
+      polylineCrtrObj.initialize(canvas);
+      polylineCrtrObj.canvas.on(WBConstant.MOUSE_DOWN, onMouseDown);
+      // polylineCrtrObj.canvas.on( WBConstant.MOUSE_MOVE , onMouseMove );
+      polylineCrtrObj.countUp=0;
+      polylineCrtrObj.canvas.on( WBConstant.MOUSE_UP , onMouseUp );
+    }
+
+    this.unRegisterEvent = function() {
+      polylineCrtrObj.canvas.off(WBConstant.MOUSE_DOWN, onMouseDown);
+      //  polylineCrtrObj.canvas.off( WBConstant.MOUSE_MOVE , onMouseMove );
+      //  polylineCrtrObj.canvas.off( WBConstant.MOUSE_UP , onMouseUp );
+    }
+
+    this.reset = function() {
+      polylineCrtrObj.canvas = null;
+    }
+
+    this.setToolProperty = function(toolProperty) {
+      polylineCrtrObj.toolProperty = toolProperty;
+    }
+    function onMouseUp(options) {
+      console.log(polylineCrtrObj.canvas.getPointer(options.e));
+//       var polyline = new fabric.Polyline([
+//     { x: 10, y: 10 },
+//     { x: 50, y: 30 },
+//     { x: 40, y: 70 },
+//     { x: 60, y: 50 },
+//     { x: 100,y: 150 },
+//     { x: 40, y: 100 }
+//   ], {
+//   stroke: 'red',
+//   left: 100,
+//   top: 100
+// });
+// console.log(polyline);
+//       // console.log(po);
+//       polylineCrtrObj.unRegisterEvent();
+//       // polyline.stroke = polylineCrtrObj.toolProperty.stroke;
+//       // polyline.fill = '#fff';
+//       polylineCrtrObj.canvas.add(polyline);
+//       polylineCrtrObj.canvas.renderAll();
+    }
+    function onMouseDown(options) {
+      //adding instance of polygon once
+      if (!polylineCrtrObj.count) {
+        polyline = new fabric.Polyline();
+        // stroke : polylineCrtrObj.toolProperty.stroke,
+        // fill : polylineCrtrObj.toolProperty.fill
+      }
+      polylineCrtrObj.isMouseDown = true;
+      polylineCrtrObj.count = 1;
+      var point = polylineCrtrObj.canvas.getPointer(options.e);
+      // polyline.points.push(point);
+      if (polyline.points.length > 1) {
+        console.log(Math.abs(polyline.points[0].x - polyline.points[polyline.points.length - 1].x));
+        if (Math.abs(polyline.points[0].x - polyline.points[polyline.points.length - 1].x) < 10) {
+          console.log("<10");
+          polylineCrtrObj.canvas.off(WBConstant.MOUSE_DOWN, onMouseDown);
+        }
+
+      }
+      console.log(polyline);
+      // polyline.initialize(polyline.points);
+  //     var polyline = polyline.initialize([
+  //   { x: 10, y: 10 },
+  //   { x: 50, y: 30 },
+  //   { x: 40, y: 70 },
+  //   { x: 60, y: 50 },
+  //   { x: 100, y: 150 },
+  //   { x: 40, y: 100 }
+  // ]);
+//       var polyline = new fabric.Polyline([
+//     { x: 100, y: 100 },//a
+//     { x: 100, y: 400 },//b
+//     { x: 200, y: 400 },//c
+//     { x: 200, y: 100 },//d
+//     { x: 100, y: 100 }
+//     // { x: 100, y: 150 }
+//     // { x: 40, y: 100 }
+//   ], {
+//   stroke: 'red',
+//   left: 200,
+//   top: 300
+// });
+// var polyline = new fabric.Rect([
+// { x: 100, y: 100 },//a
+// { x: 100, y: 400 }//b
+// // { x: 200, y: 400 },//c
+// // { x: 200, y: 100 }//d
+// // { x: 100, y: 100 }
+// // { x: 100, y: 150 }
+// // { x: 40, y: 100 }
+// ], {
+// stroke: 'red',
+// left: 200,
+// top: 300
+// });
+var polyline = new fabric.Rect({
+    left: 200,
+    top: 300,
+    width: 100,
+    height: 100,
+    fill: 'green',
+    angle: 10,
+    padding: 10
+  });
+      polylineCrtrObj.unRegisterEvent();
+      // polyline.stroke = polylineCrtrObj.toolProperty.stroke;
+      // polyline.stroke = '#f00';
+      polylineCrtrObj.canvas.add(polyline);
+      polylineCrtrObj.canvas.renderAll();
+    }
+  }
+  return {
+    getInstance: function() {
+      if (!polylineCrtrInstance) {
+        polylineCrtrInstance = new polylineCreator();
+      }
+      return polylineCrtrInstance;
+    }
+  };
+
+})();
+var canvas = new fabric.Canvas('d');
+polylineCrtr.getInstance().registerEvent(canvas);
+*/
+</script>
+  </body>
+</html>

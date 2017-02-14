@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="bower_components/jquery/dist/jquery.min.js" charset="utf-8"></script>
+    <meta charset="utf-8">
+    <script type="text/javascript">
+var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": "http://localhost:3000/downloadAttendanceReport",
+  "method": "POST",
+  "headers": {
+    "x-token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBicmlkZ2VsYWJ6LmNvbSIsImlhdCI6MTQ4NTQ5MjM3MCwiZXhwIjoxNDg2NzAxOTcwfQ.9cwGcSW_UHucKbufDRG6S1WGthpFepj_Ye7vwSZ4_90",
+    "content-type": "application/json",
+    "cache-control": "no-cache",
+    "postman-token": "41664847-634c-ccb9-51e8-38ca5511b949"
+  },
+  "processData": false,
+  "data": "{\"selectedCompany\":[{\"companyName\":\"Next Education\",\"engineerList\":[\"40001EI\",\"40002EI\",\"40003EI\"]},\n{\"companyName\":\"Craft Villa\",\"engineerList\":[\"40011EI\",\"40022EI\",\"400033EI\"]}]}"
+}
+
+$.ajax(settings).done(function (response, status, headers) {
+
+	//var URL= window.URL || window.webkitURL || window.mozURL || window.msURL;
+	//headers = headers();
+ 
+        var filename = "report.zip";//headers['x-filename'];
+        var contentType = headers['content-type'];
+        var linkElement = document.createElement('a');
+        var blob = new Blob([response], { type: contentType });
+	var url = window.URL.createObjectURL(blob);
+ 
+            linkElement.setAttribute('href', url);
+            linkElement.setAttribute("download", filename);
+ 
+            var clickEvent = new MouseEvent("click", {
+                "view": window,
+                "bubbles": true,
+                "cancelable": false
+            });
+            linkElement.dispatchEvent(clickEvent);
+/*var a = document.createElement('a');
+var blob = new Blob([response], {'type':contentType});
+console.log(blob);
+a.href = URL.createObjectURL(blob);
+a.download = "report.zip";
+a.click();*/
+});
+
+    var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://localhost:3000/readDashboardData?timeStamp=1485492428000",
+    "method": "GET",
+    "headers": {
+      "x-token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBicmlkZ2VsYWJ6LmNvbSIsImlhdCI6MTQ4NTQ5MjM3MCwiZXhwIjoxNDg2NzAxOTcwfQ.9cwGcSW_UHucKbufDRG6S1WGthpFepj_Ye7vwSZ4_90",
+      "content-type": "application/x-www-form-urlencoded",
+      "cache-control": "no-cache",
+      "postman-token": "47479e4c-9a28-82a7-298f-b4104546af46"
+    },
+    success:function(res,status,jqXHR){
+      console.log("XHR:",jqXHR.getAllResponseHeaders());
+      console.log("X-EKINCARE-KEY:: ",jqXHR.getResponseHeader("X-EKINCARE-KEY"));
+    }
+    }
+
+    //$.ajax(settings);
+    var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": "http://192.168.0.37:8080/DocumentSigner/login",
+  "method": "POST",
+  "headers": {
+    "content-type": "application/json",
+    "cache-control": "no-cache",
+    "postman-token": "0a81fd91-08f9-2833-8464-7707ef5cb7e5"
+  },
+  "processData": false,
+  "data": "{\"email\":\"qwerty@gmail.com\",\"password\":\"qwerty\"}"
+}
+
+/*$.ajax(settings).done(function (response) {
+  console.log(response);
+});*/
+//$.ajax(settings);
+
+/*var settings = {
+"async": true,
+"crossDomain": true,
+"url": "http://localhost:3000/dummy",
+"method": "GET",
+"headers": {
+"content-type": "application/json"
+}}
+
+$.ajax(settings).done(function (response) {
+console.log(response);
+});
+*/
+    // .done(function (response) {
+    // console.log(response);
+    // });
+    // ,
+    // "data": {
+    //   "email": "tech@ekincare.com",
+    //   "password": "Foobar123"
+    // }
+    </script>
+ <script type="text/javascript">
+
+//var time = moment(1382086394000).format("DD-MM-YYYY h:mm:ss");
+//onsole.log(new Date(ISODate().getTime() - 1000 * 60 * 18));
+var today = new Date(1477308028000);
+var a = 1477308028000;
+console.log(Number.prototype)
+console.log(today.toISOString()); //1480588102119 Returns 2011-10-05T14:48:00.000Z
+var myDate =new Date("2016-12-01T07:23:59.272Z");//1480586026344 Date.now();
+//console.log(myDate);
+//console.log(myDate.toISOString());
+var inputDate = new Date(myDate.toISOString());
+/*MyModel.find({
+    'date': { $lte: inputDate }
+})*/
+ var userLang = navigator.language || navigator.userLanguage;
+// alert ("The language is: " + userLang);
+//console.log("navigator.language",navigator.language);
+//console.log("navigator.userLanguage",navigator.userLanguage);
+ </script>
+    <title></title>
+  </head>
+  <body>
+
+  </body>
+</html>

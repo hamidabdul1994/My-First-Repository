@@ -35,7 +35,8 @@ angular.module("myApp", ["firebase"])
                     console.log("success");
 		$location.path("/none");
                 }
-            }); // var auth = firebase.auth;
+            }); 
+	// var auth = firebase.auth;
             //  auth.$onAuth(function(authData){
             //      console.log(authData);
             //      $scope.userStatus = authData.password.email;

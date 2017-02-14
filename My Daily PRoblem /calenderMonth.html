@@ -1,0 +1,64 @@
+<script src="bower_components/moment/moment.js" charset="utf-8"></script>
+<script type="text/javascript">
+
+          var selected = _removeTime( moment());
+          var month = selected.clone();
+          console.log(selected);
+          var start = selected.clone();
+
+          console.log(start.date(1));
+          _removeTime(start.day(0));
+
+          _buildMonth( start,month);
+
+          select = function(day) {
+              selected = day.date;
+          };
+
+          next = function() {
+              var next = month.clone();
+              _removeTime(next.month(next.month()+1)).date(1);
+              month.month(month.month()+1);
+              _buildMonth( next, month);
+          };
+
+          previous = function() {
+              var previous = month.clone();
+              _removeTime(previous.month(previous.month()-1).date(1));
+              month.month(month.month()-1);
+              _buildMonth( previous, month);
+          };
+
+
+  function _removeTime(date) {
+      return date.day(0).hour(0).minute(0).second(0).millisecond(0);
+  }
+
+  function _buildMonth(start, month) {
+      weeks = [];
+      var done = false, date = start.clone(), monthIndex = date.month(), count = 0;
+      while (!done) {
+          weeks.push({ days: _buildWeek(date.clone(), month) });
+          date.add(1, "w");
+          done = count++ > 2 && monthIndex !== date.month();
+          monthIndex = date.month();
+      }
+  }
+
+  function _buildWeek(date, month) {
+      var days = [];
+      for (var i = 0; i < 7; i++) {
+          days.push({
+              name: date.format("dd").substring(0, 1),
+              number: date.date(),
+              isCurrentMonth: date.month() === month.month(),
+              isToday: date.isSame(new Date(), "day"),
+              date: date
+          });
+          date = date.clone();
+          date.add(1, "d");
+      }
+      return days;
+  }
+
+</script>

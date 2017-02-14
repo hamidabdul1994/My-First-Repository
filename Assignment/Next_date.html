@@ -7,6 +7,10 @@
 <html>
 	<head>
 		<script type="text/javascript" >
+			function sum(a,b){
+console.log(a+":::"+b);
+}
+sum(1,1,1);
 			function myFunction()
 			{
 				var todayDate = new Date();
@@ -22,6 +26,7 @@
 		<script>
 			function MyDate()
 			{
+			console.log("calling");
 				var todayDate = (arguments.length==0 ? new Date() : new Date(arguments[0]));
 
 				return todayDate.getDate()+"/"+(todayDate.getMonth()+1)+"/"+todayDate.getFullYear();

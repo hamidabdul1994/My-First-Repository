@@ -1,0 +1,17 @@
+{
+  "name": "nested state",
+  "authors": [
+    "Hamid Raza <hamidabdul1994@hotmail.com>"
+  ],
+  "description": "",
+  "main": "index.html",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

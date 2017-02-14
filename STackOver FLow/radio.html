@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Radio</title>
+    <script>dojoConfig = {parseOnLoad: true}</script>
+    <script data-dojo-config="async: 1" src="http://ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojo/dojo.js"></script>
+    <script>
+        // function getAssociatedList() {
+        dojo.ready(function(){
+            var associatedAPListArray = [];
+            var xhrArgs = {
+                url: "data.json",
+                preventCache: true,
+                contentType: "application/json"
+            };
+            var deferred = dojo.xhrGet(xhrArgs);
+            deferred.addCallback(function(response) {
+                var associatedApListObj = dojo.fromJson(response);
+                console.log(associatedApListObj);
+                var firstJsonObject;
+                var row = '';
+                for (i = 0; i <= dojo.fromJson(associatedApListObj.items).length - 1; i++) {
+                    firstJsonObject = dojo.fromJson(associatedApListObj.items)[i];
+                    var MacAddress = firstJsonObject.MacAddress;
+                    var LradName = firstJsonObject.LradName;
+                    var style_td = '<td align="left" width="170">';
+                    row += '<tr>' + style_td + '<input type="radio"' + 'id="associated_' + i + '" name="associatedAp"/ >' + MacAddress + '</td>' + style_td + LradName + '</td></tr>';
+                }
+                document.getElementById('associated_tablebody').innerHTML = row;
+            });
+          });
+        // }
+        // getAssociatedList();
+    </script>
+</head>
+<body>
+    <div id="associatedAPListTable" style="float:left">
+        <Associated (Destination)>
+            <table border="0" cellspacing="0" cellpadding="0" class="listContainer" align="center">
+                <thead>
+                    <tr>
+                        <th class="tableheader" align="left" width="170">MAC address</th>
+                        <th class="tableheader" align="left" width="170">LradName</th>
+                    </tr>
+                </thead>
+                <tbody id="associated_tablebody">
+                </tbody>
+            </table>
+    </div>
+
+</body>
+</html>

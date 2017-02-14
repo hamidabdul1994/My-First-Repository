@@ -1,0 +1,163 @@
+<script type="text/javascript">
+function a(){
+return new Promise(function(resolve,reject){
+	console.log("before");
+setTimeout(function() {
+	if(true)
+	resolve(10);
+	else {
+		reject();
+	}
+   }, 2000);
+ console.log("after");
+});
+}
+function b(temp){
+console.log("My argumnet::"+temp);
+}
+
+var data=a().then(b).catch(function(error){
+console.log("my Error code is:"+error);
+});
+//b(data);
+
+
+
+/*console.log(Date.now());
+
+var items = [1, 2, 3, 4, 5];
+var fn = function asyncMultiplyBy2(v){ // sample async action
+    return new Promise(resolve => setTimeout(() => resolve(v * 2), 100));
+};
+// map over forEach since it returns
+
+var actions = items.map(fn); // run the function over all items.
+
+// we now have a promises array and we want to wait for it
+
+var results = Promise.all(actions); // pass array of promises
+
+results.then(data => // or just .then(console.log)
+    console.log(data) // [2, 4, 6, 8, 10]
+);
+
+// we can nest this of course, as I said, `then` chains:
+
+var res2 = Promise.all([1, 2, 3, 4, 5].map(fn)).then(
+    data => Promise.all(data.map(fn))
+).then(function(data){
+    // the next `then` is executed after the promise returned from the previous
+    // `then` fulfilled, in this case it's an aggregate promise because of
+    // the `.all`
+    return Promise.all(data.map(fn));
+}).then(function(data){
+    // just for good measure
+    return Promise.all(data.map(fn));
+});
+
+// now to get the results:
+
+res2.then(function(data){
+    console.log(data); // [16, 32, 48, 64, 80]
+});*/
+/*var myArr=[1,2,3,11,4,22,5,33,6,44];
+Promise.each(myArr,function(data){
+  setTimeout(function() {
+       console.log('first method completed'+data);
+       resolve({data: data});
+    }, 2000);
+}).then(function(){
+  console.log("done");
+});
+*/
+/******* My Promise********/
+/*console.log(Promise.each);
+var p1 = Promise.resolve(3);
+var p2 = 1337;
+var p3 = new Promise((resolve, reject) => {
+  setTimeout(resolve, 3000, "foo");
+});
+
+Promise.all([p3]).then(function(data){
+  console.log(data);
+});
+*/
+/*****/
+/*
+var fn = function asyncMultiplyBy2(v){
+  console.log(v); // sample async action
+    // return new Promise(resolve => setTimeout(() => resolve(v * 2), 100));
+    return (setTimeout(v*2,2000));
+};
+Promise.all([1, 2, 3, 4, 5].map(fn)).then(function(data){
+  console.log("data:",data);
+});
+*/
+// function fetchImage(url){
+//     return new Promise(function(resolve, reject){
+//         var img = new Image()
+//         img.onload = function(){
+//         // if(url!==null)
+//         // {
+//             resolve(url)
+//           // }else {
+//
+//
+//         }
+//         img.onerror = function(){
+//             reject(url)
+//         }
+//         img.src = url
+//     })
+// }
+//
+// fetchImage('image1.png').then(function(url){
+//     console.log(url + ' downloaded!')
+//     return fetchImage('image2.png')
+// }).then(function(url){
+//     console.log(url + ' downloaded!')
+//     return fetchImage('image1.png')
+// }).then(function(url){
+//     console.log(url + ' downloaded!')
+//     return fetchImage('image2.png')
+// }).then(function(url){
+//     console.log(url + ' downloaded!')
+// })
+
+/*
+var firstMethod = function() {
+   var promise = new Promise(function(resolve, reject){
+      setTimeout(function() {
+         console.log('first method completed');
+         resolve({data: '123'});
+      }, 2000);
+   });
+   return promise;
+};
+
+
+var secondMethod = function(someStuff) {
+   var promise = new Promise(function(resolve, reject){
+      setTimeout(function() {
+         console.log('second method completed');
+         resolve({newData: someStuff.data + ' some more data'});
+      }, 2000);
+   });
+   return promise;
+};
+
+var thirdMethod = function(someStuff) {
+   var promise = new Promise(function(resolve, reject){
+      setTimeout(function() {
+         console.log('third method completed',someStuff);
+         resolve({result: someStuff.newData});
+      }, 3000);
+   });
+   return promise;
+};
+
+firstMethod()
+.then(secondMethod)
+.then(thirdMethod);
+*/
+</script>

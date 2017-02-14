@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css" media="screen" title="no title" charset="utf-8">
+    <script src="bower_components/angular/angular.min.js" charset="utf-8"></script>
+    <script src="bower_components/angular-animate/angular-animate.min.js" charset="utf-8"></script>
+    <script src="bower_components/angular-aria/angular-aria.min.js" charset="utf-8"></script>
+    <script src="bower_components/angular-messages/angular-messages.min.js" charset="utf-8"></script>
+    <script src="bower_components/angular-material/angular-material.js" charset="utf-8"></script>
+</head>
+
+<body>
+    <div ng-app="ctrlApp">
+        <md-content>
+            <!-- strangely TestController as tc doesnt work -->
+            <div ng-controller="TestController">
+                <div ng-click="showDialog();">Show</div>
+                <!-- this also doesnt seem to work.. -->
+            </div>
+        </md-content>
+    </div>
+    <script type="text/javascript">
+        /** Own Module **/
+        var d = angular.module('components', []);
+        d.directive('myDirective', function() {
+
+            function link(scope, element, attributes) {
+                console.log("scope.items are ", scope.items);
+            }
+
+            return ({
+                restrict: "E",
+                controller: 'TestController',
+                link: link,
+                template: '<div>\
+  <h1>my Directive template</h1>\
+  <pre> Empty!: {{items[0]}}</pre>\
+</div>',
+            });
+        });
+        var app = angular.module('ctrlApp', ['components', 'ngMaterial']);
+
+        app.controller('TestController', function($scope, $log, $mdDialog) {
+            $scope.items = [{
+                'title': 1
+            }, {
+                'title': 2
+            }];
+            // open modal
+            $scope.showDialog = function() {
+                $mdDialog.show({
+                    template: '<md-dialog aria-label="test">\
+  <form ng-cloak>\
+    <my-directive></my-directive>  </form>\
+</md-dialog>',
+                    parent: angular.element(document.body),
+                    clickOutsideToClose: true,
+                    controller: function() {
+                        // scope from parent persists here as expected
+                        console.dir($scope.items);
+
+                        // used to wire up dialog specific UI behavior
+                        $scope.cancel = function() {
+                            $mdDialog.hide();
+                        }
+                    }
+                });
+            };
+        });
+    </script>
+</body>
+
+</html>

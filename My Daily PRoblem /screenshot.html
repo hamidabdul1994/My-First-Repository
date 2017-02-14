@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/1.7.3/fabric.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js" charset="utf-8"></script>
+    <title></title>
+
+  </head>
+  <body>
+    <!-- <canvas id="canvas" style="" width="650px" height="800px"  style="display:inline">2d</canvas> -->
+
+    <a href="#" id = "selectrectangle" type="button" value="select rectangle">Download</a>
+    <input id = "selectsecond" type="button" value="select second object"/>
+    <canvas id="canvas" width="400" height="400" style="border:1px solid red"/>
+    <canvas id="canvasHiden" width="400" height="400" style="border:1px solid red;display:none"/>
+<!-- <img src="" alt="" /> -->
+<script type="text/javascript">
+var canvas = new fabric.Canvas('canvas');
+var canvasHiden = new fabric.Canvas('canvasHiden');
+canvas.add(new fabric.Rect({
+    left: 100,
+    top: 100,
+    width: 75,
+    height: 50,
+    fill: 'green',
+    stroke: 'black',
+    strokeWidth: 3,
+    padding: 10
+  }));
+
+ canvas.add(new fabric.Circle({
+    left: 200,
+    top: 200,
+    radius: 30,
+    fill: 'gray',
+    stroke: 'black',
+    strokeWidth: 3
+  }));
+
+       canvas.on('object:selected', selectedObject);
+var selected = [];
+function selectedObject(e) {
+    var id = canvas.getObjects().indexOf(e.target);
+    selected[id]=e.target;	//It will Avoid Double entry of object
+    //canvas.setActiveGroup(new fabric.Group(canvas.getObjects())).renderAll();
+
+    console.log(selected);
+    }
+
+$( "#selectrectangle" ).click(function() {
+ //canvas.setActiveGroup(new fabric.Group(selected)).renderAll();
+ if(selected.length>0){
+ var link = this;
+ selected.forEach(function(s){
+  canvasHiden.add(s);
+  canvasHiden.renderAll();
+  });
+console.log(canvasHiden.toDataURL());
+    link.href =canvasHiden.toDataURL();
+    link.download = "filename.png";
+}
+  else{
+  alert("Please Select the Aleast one")
+  }
+ console.log(selected);
+
+});
+
+$( "#selectsecond" ).click(function() {
+ canvas.setActiveObject(canvas.item(1));
+});
+</script>
+  </body>
+</html>

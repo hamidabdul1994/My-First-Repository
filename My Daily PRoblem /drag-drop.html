@@ -1,0 +1,41 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="http://www.jqueryscript.net/demo/Simple-jQuery-Plugin-For-Drag-Drop-Sorting-Of-Lists-jesse/jquery-jesse.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+  
+$(function(){
+  
+  // removing image onclick close button 
+  $(document).on("click",".close_product" ,function (event) {
+    console.log('inside onclick function');
+    });
+  
+		$('#list').jesse({
+			onStop: function(position, prevPosition, item) {
+				console.log('inside list function');
+				if(position == 0){
+					item.addClass("drop-high").removeClass("drop-small");;
+					$( "#list" ).find( "li:nth-child(2)" ).removeClass("drop-high").addClass("drop-small");
+				}
+				if(prevPosition == 0){
+						item.addClass("drop-small").removeClass("drop-high");
+					$( "#list" ).find( "li:nth-child(1)" ).removeClass("drop-small").addClass("drop-high");
+				
+				}
+			},
+		});
+	});
+  </script> 
+&lt;&nbsp; &copy; &nbsp; &gt;
+ <ul class="jq-jesse" id="list" style="display:inline">
+                                  <li class="drop-high"><div class="high"><div class="close close_product">X</div><img src="https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2016/04/1459870313PHP-logo.svg.png" width="20%"></div> </li>
+                                  <li class="drop-small"><div class="high"><div class="close close_product">X</div><img src="https://phpwomen.org/holdingpage/images/usergroups/phpne.png" width="20%"></div> </li>
+                                  <li class="drop-small"><div class="high"><div class="close close_product">X</div><img src="http://d3gnp09177mxuh.cloudfront.net/tech-page-images/php.png" width="20%"></div></li>
+                                  <li class="drop-small"><div class="high"><div class="close close_product">X</div><img src="http://unitedwebsoft.in/blog/wp-content/uploads/2013/07/advantage-of-php.jpg" width="20%"></div></li>
+                                
+       </ul>
+</body>
+</html>

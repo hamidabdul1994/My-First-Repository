@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<!-- <script src="../bower_components/angular/angular.min.js" charset="utf-8"></script> -->
+<script src="../bower_components/blob-polyfill/Blob.js" charset="utf-8"></script>
+<script src="../bower_components/file-saver.js/FileSaver.js" charset="utf-8"></script>
 <body>
 
 <div ng-app="myApp" align="center" ng-controller="myCtrl">
@@ -12,13 +15,53 @@
   Here i will diplay the last name ::<p ng-bind="secondName"></p>
  	<p>My first expression: {{ 5 + 5 }}</p>
 </form>
+<span ng-repeat=" d in data ">
+{{d+"::"+$index}}
+</span>
 </div>
+
 <script>
 var app = angular.module("myApp",[]);
-app.controller("myCtrl",function($scope){
+app.controller("myCtrl",function($scope,$http,$window){
+var data="{\"selectedCompany\":[{\"companyName\":\"Next Education\",\"engineerList\":[\"40001EI\",\"40002EI\",\"40003EI\"]} ,\n{\"companyName\":\"Craft Villa\",\"engineerList\":[\"40011EI\",\"40022EI\",\"400033EI\"]}]}";
+//
+var config={responseType: 'blob'};
+config.headers={
+    "x-token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBicmlkZ2VsYWJ6LmNvbSIsImlhdCI6MTQ4NTQ5MjM3MCwiZXhwIjoxNDg2NzAxOTcwfQ.9cwGcSW_UHucKbufDRG6S1WGthpFepj_Ye7vwSZ4_90",
+    "content-type": "application/json",
+    "cache-control": "no-cache",
+    "postman-token": "cd138432-aafd-5243-316e-46fa685f8a7e"
+  };
 
+$http.post("http://localhost:3000/downloadAttendanceReport",data,config).success(function(response){
+  console.log(response);
+         var fileName = "Report.zip";
+         saveAs(response, fileName);
+ var URL = $window.URL || $window.webkitURL || $window.mozURL || $window.msURL;
+    /*if ( URL ) {
+	console.log(response);
+        var blob = new Blob([response],{type:'application/zip'});
+        var url = URL.createObjectURL(blob);
+        $window.open(url);
+    }*/
+/* var anchor = angular.element('<a>');
+    anchor.attr({
+        href: 'data:application/zip;charset=utf-8,' + response,
+        target: '_blank',
+        download: 'report.zip'
+    })[0].click();
+});*/
+
+ // var blob = b64toBlob(response, 'application/zip');
+ //        var fileName = "download.zip";
+ //
+ // console.log(blob);
+        //saveAs(blob, fileName);
 //$scope.firstName="Test";
 //$scope.secondName="Nothing";
+$scope.data={1:{"name":"1"},2:{"name":"2"},3:{"name":"3"}};
+
+});
 });
 
 </script>

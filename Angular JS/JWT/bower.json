@@ -1,0 +1,21 @@
+{
+  "name": "JWT",
+  "authors": [
+    "Hamid Raza <hamidabdul1994@hotmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-base64": "^2.0.5"
+  }
+}
