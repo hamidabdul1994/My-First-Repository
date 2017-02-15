@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html ng-app='Test'>
+<head>
+  <script src="http://code.angularjs.org/1.6.1/angular.min.js"></script>
+  <meta charset=utf-8 />
+  <title>JS Bin</title>
+</head>
+<body ng-controller='Ctrl'>
+  <div ng-repeat='letter in letters | inArray:filterBy:"id"'>{{letter.id}}</div>
+  <script>
+function Ctrl($scope) {
+  $scope.letters = [
+    {id: 'a', name:'nameA'},
+    {id: 'b', name:'nameB'},
+    {id: 'c', name:'nameC'},
+    {id: 'd', name:'nameD'},
+    {id: 'e', name:'nameE'}
+  ];
+  
+  $scope.filterBy = [];
+}
+angular.module('Test', [])
+.filter('inArray', function($filter){
+    return function(list, arrayFilter, element){
+	console.log(list, arrayFilter, element);
+        if(arrayFilter && arrayFilter.length > 0){
+        return $filter("filter")(list, function(listItem){
+            return arrayFilter.indexOf(listItem[element]) != -1;
+        });
+    }
+
+    return list;
+      
+    };
+})
+.controller("Ctrl",Ctrl);
+
+</script>
+</body>
+</html>
