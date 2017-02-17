@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Angular</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+  </head>
+ <body ng-app="app">
+ <div ng-controller="emp">
+    <div my-info></div> <!-- This is working-->
+   <my-info></my-info> <!-- This is not working -->
+</div>
+<script type="text/javascript">
+angular
+.module('app', [])
+.controller('emp', function() {
+ 
+}).directive('myInfo', function () {
+return {
+       template:"<h3>My info directive</h3>"
+	};
+});
+</script>
+  </body>
+</html>

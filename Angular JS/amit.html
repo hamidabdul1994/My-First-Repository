@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+<!-- <script src="../bower_components/angular/angular.min.js" charset="utf-8"></script> -->
+<!-- <script src="../bower_components/blob-polyfill/Blob.js" charset="utf-8"></script>
+<script src="../bower_components/file-saver.js/FileSaver.js" charset="utf-8"></script> -->
+<body>
+
+<div ng-app="myApp" align="center" ng-controller="myCtrl">
+  <form name="myForm" >
+  <input type="text" ng-model="firstName" /> <br>
+  <input type="text" ng-model="secondName" /> <br>
+  <input type="email" ng-model="myEmail" name="Email"/><span ng-show="myForm.Email.$error.email">Email Address is not valid</span>
+  Here i wil display the first name::{{firstName}}<p ng-bind="::firstName">Hii</p>  <!-- Both method do same function -->
+  Here i will diplay the last name ::<p ng-bind="secondName"></p>
+ 	<p>My first expression: {{ 5 + 5 }}</p>
+</form>
+<span ng-repeat=" d in data ">
+{{d+"::"+$index}}
+</span>
+</div>
+
+<script>
+function getFileNameFromHttpResponse(contentDispositionHeader) {
+  //console.log(httpResponse);
+    // var contentDispositionHeader = httpResponse.getResponseHeader('Content-Disposition');
+    //  ['Content-Disposition']
+    // console.log(contentDispositionHeader);
+     var result = contentDispositionHeader.split(';')[1].trim().split('=')[1];
+     return result.replace(/"/g, '');
+ }
+var app = angular.module("myApp",[]);
+app.controller("myCtrl",function($scope,$http,$window,$timeout){
+
+$http.get("ipl.json").success(function (data) {
+  data.team_info.forEach(function (tdata) {
+    $timeout(function () {
+      var temp ={};
+      temp.teamName=tdata.team_name;
+      temp.teamImage=tdata.team_img_url;
+      temp.teamCoach=tdata.team_coach;
+      temp.teamHomeVenue=tdata.team_home_venue;
+      temp.teamOwner=tdata.team_owner;
+      temp.teamCaptain=tdata.team_captain;
+      // console.log(temp);
+//       var settings = {
+//   "async": true,
+//   "crossDomain": true,
+//   "url": "http://192.168.1.104:8081/teamDataEntry",
+//   "method": "POST",
+//   "headers": {
+//     "content-type": "application/x-www-form-urlencoded",
+//     "cache-control": "no-cache",
+//     "postman-token": "6e5e21b2-0851-ac92-4cb2-8e4053cef51b"
+//   },
+//   "data": temp
+// }
+//
+// $.ajax(settings).done(function (response) {
+//   console.log(response);
+// });
+      // $http({method:"POST",url:"http://192.168.1.104:8081/teamDataEntry","data":temp,"content-type":"application/json"});
+  //     .success(function(response,status,headers,config){
+  // console.log(response,status,headers,config);
+  //     });
+  var teamName = tdata.team_name.replace(/\s+/g, '');
+  data[teamName].forEach(function (pdata) {
+  var ptemp={};
+  ptemp.teamName=tdata.team_name;
+  ptemp.playerName =pdata.player_name;
+  ptemp.playerImage=pdata.player_img_url;
+  ptemp.playerRole=pdata.player_role;
+  ptemp.playerBattingStyle=pdata.player_batting_style;
+  ptemp.playerBowlingStyle=pdata.player_bowling_style;
+  ptemp.playerNationality=pdata.player_nationality;
+  ptemp.playerDateOfBirth=pdata.player_dob;
+  var settings = {
+"async": true,
+"crossDomain": true,
+"url": "http://192.168.1.104:8081/playerDataEntry",
+"method": "POST",
+"headers": {
+"content-type": "application/x-www-form-urlencoded",
+"cache-control": "no-cache",
+"postman-token": "6e5e21b2-0851-ac92-4cb2-8e4053cef51b"
+},
+"data": ptemp
+}
+
+$.ajax(settings).done(function (response) {
+console.log(response);
+});
+  // console.log(ptemp);
+  // $http.post("http://192.168.1.104:8081/playerDataEntry",ptemp,config).success(function(response,status,headers,config){
+  // console.log(response,status,headers,config);
+  });
+
+});
+    },1000);
+
+
+  });
+// })
+// $http.post("http://192.168.1.104:8081/playerDataEntry",data).success(function(response,status,headers,config){
+//
+// });
+});
+
+</script>
+
+</body>
+</html>

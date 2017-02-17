@@ -41,11 +41,11 @@ config.headers={
     "postman-token": "cd138432-aafd-5243-316e-46fa685f8a7e"
   };
 
-$http.post("http://localhost:3000/downloadAttendanceReport",data,config).success(function(response,status,headers,config){
+$http.post("http://localhost:3000/downloadInvoiceReport",data,config).success(function(response,status,headers,config){
   console.log(getFileNameFromHttpResponse(headers('Content-Disposition')),config);
          var fileName = getFileNameFromHttpResponse(headers('Content-Disposition')) || "Report.zip";
          saveAs(response, fileName);
- var URL = $window.URL || $window.webkitURL || $window.mozURL || $window.msURL;
+// var URL = $window.URL || $window.webkitURL || $window.mozURL || $window.msURL;
     /*if ( URL ) {
 	console.log(response);
         var blob = new Blob([response],{type:'application/zip'});
